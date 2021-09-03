@@ -1,163 +1,81 @@
+:root {
+  --bg-color: black;
+  --main-color: #fcfcfc;
+  --main-color-transparent: rgba(255, 166, 0, 0.459);
+  --header-font-family: 'Creepster', cursive;
+}
+
 body {
-  margin: 0;
-  font-family: monospace;
+  background-color: var(--bg-color);
+  color: var(--main-color);
+  text-align: center;
 }
 
-#philosopher-header {
+#philosopher-container {
   display: flex;
-  justify-content: center;
-  background: #000000;
-  opacity: .8;
-  height: 7rem;
-  padding: 1rem;
+  flex-wrap: wrap;
+  justify-content: space-around;
 }
 
-#philosopher-header img {
-  height: 6rem;
-  width: auto;
+.philosopher-card {
+  border: 3px solid var(--main-color);
+  border-radius: 1em;
 }
 
-#philosopher-collection {
-  margin: 2rem;
-}
-#note-collection {
-  margin: 2rem;
-}
-
-.card {
-  text-align: center;
-  border: rgb(0, 0, 0) solid 1px;
-  padding: 1rem;
-  width: 25rem;
-  height: 40rem;
-  display: inline-grid;
-  margin: 1rem 2rem;
-  box-shadow: 3px 4px #000000
+.philosopher-card img {
+  width: 350px;
+  height: 250px;
+  object-fit: cover;
+  cursor: pointer;
 }
 
-.philosopher-avatar {
-  justify-self: center;
-  height: 12rem;
-  width: auto;
+.philosopher-card .title {
+  font-size: 2.25em;
+  font-family: var(--header-font-family);
+  color: red;
+  cursor: pointer;
+  text-decoration: underline;
 }
 
-button {
-  position: relative;
-  background-color: #1285dc;
-  border: none;
-  border-radius: 5px;
-  height: 3rem;
-  width: max-content;
-  color: whitesmoke;
-  font-size: 18px;
-  justify-self: center;
-}
-
-button:hover {
-  background-color: whitesmoke;
-  border: #000000 solid 1px;
-  color: #000000;
-}
-
-.container {
-  padding: 1rem;
-  width: stretch;
-  height: auto;
-  display: none;
-  background: #000000;
-  opacity: .8;
-}
-
-.add-philosopher-form {
-  width: 80%
-}
-.add-note-form {
-  width: 80%
-}
-
-.submit {
-  position: relative;
-  background-color: #e04b52;
-  border-radius: 5px;
-  height: 2rem;
-  width: max-content;
-  color: whitesmoke;
-  font-size: 18px;
-  justify-self: center;
-  font-family: monospace;
-  margin: 3px;
-}
-
-.submit:hover {
-  background-color: whitesmoke;
-  border: #e04b52 solid 1px;
-  color: #e04b52;
-}
-
-
-.input-text {
-  border-radius: 5px;
-  height: 2rem;
-  width: 60%;
-  font-size: 18px;
-  font-family: monospace;
-  margin: 3px;
-}
-
-
-/* body{
-	font-size: 20px;
-	font-family: 'Work Sans', sans-serif;
-	color: #333;
-  font-weight: 300;
-  text-align: center;
-  background-color: #f8f6f0;
-} */
-
-.question{
-  font-size: 30px;
-  margin-bottom: 10px;
-}
-.answers {
-  margin-bottom: 20px;
-  text-align: left;
-  display: inline-block;
-}
-.answers label{
-  display: block;
-  margin-bottom: 10px;
-}
-button{
-  font-family: 'Work Sans', sans-serif;
-	font-size: 22px;
-	background-color: rgb(23, 105, 205);
-	color: #fff;
-	border: 0px;
-	border-radius: 3px;
-	padding: 20px;
-	cursor: pointer;
-	margin-bottom: 20px;
-}
-button:hover{
-	background-color: rgb(65, 140, 220);
-}
-
-
-.slide{
-  position: absolute;
-  left: 0px;
-  top: 0px;
+.show img {
   width: 100%;
-  z-index: 1;
-  opacity: 0;
-  transition: opacity 0.5s;
+  height: 40vh;
+  object-fit: cover;
 }
-.active-slide{
-  opacity: 1;
-  z-index: 2;
+
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: var(--main-color-transparent); /* Fallback color */
 }
-.quiz-container{
-  position: relative;
-  height: 200px;
-  margin-top: 40px;
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: black;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid black;
+  border-radius: 1em;
+  width: 80%; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button */
+.close {
+  color: red;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
 }
