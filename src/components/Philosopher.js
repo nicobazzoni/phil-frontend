@@ -117,7 +117,7 @@ class Philosopher {
       <input type="submit" value="List this Philosopher!"><br>
     </form>
     `
-    modal.main.querySelector("form").addEventListener("submit", this.handleSubmit).setAttribute('type', 'submit')
+    modal.main.querySelector("form").addEventListener("submit", this.handleSubmit)
     modal.open()
   }
   
