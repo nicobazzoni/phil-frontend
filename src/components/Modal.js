@@ -14,6 +14,12 @@ class Modal {
     
     
     get addBtn(){
+      return document.querySelector("#edit-philosopher-btn");
+    }
+    get form(){
+      return document.querySelector(".edit-philosopher-form")
+    }
+    get addBtn(){
       return document.querySelector("#new-philosopher-btn");
     }
     get form(){
