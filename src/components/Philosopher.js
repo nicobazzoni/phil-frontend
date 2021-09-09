@@ -4,64 +4,62 @@ class Philosopher {
 
   constructor(data){
     this.data = data
+    
+    this.thoughts = this.data.thoughts.map(thought => new Thought(thought, this))
     this.constructor.all.push(this)
   }
 
   renderShow = () => {
-    const { name, idea, section, image, notes } = this.data
+    const { name, idea, category, image } = this.data
     
     document.getElementById("main").innerHTML = `
     <div class="show">
       <h1>${name}</h1>
       <img src="${image}" alt=${name}/>
-      <p>${idea}</p>
-      <p>${notes}</p>
-      <h1>  ${section}</h1>
+     <h3> ${idea} </h3>
+     <p> ${category} </p>
+     <div class="container"></div>
     </div>
-    <button class="button" id="goBack">Back</button>
-    <button class="button" id="edit-btn">Edit</button>
+    <button  id="goBack">Back</button>
+   
     `
     document.getElementById("goBack").addEventListener("click", Philosopher.renderIndex)
-    document.getElementById("edit-btn").addEventListener("click", Philosopher.openEditPhilosopherForm)
+    this.thoughts.forEach(thought => thought.render())
+    
+    
   }
 
   renderCard = () => {
-    
-    const {  name, image, id, favorite } = this.data
-    
-    const addFave = document.createElement("fav-btn")
-    addFave.innerText = "✩"
-    addFave.addEventListener("click", Philosopher.addToFav)
-    main.append(addFave)
+   
+    const {  name, image, id, } = this.data
     document.getElementById("philosopher-container").innerHTML += `
     
-    <div class="philosopher-card" data-id=${id}>
-      <img src=${image} alt=${name}/>
-      
-      
-      <p class="title">${name}</p>
-     
-      
-      <button type="button" class="fav-btn">✩</button> 
-      
-      <div class= id="myProgress">
-       <div id="myBar"></div>
-    </div>
-    <button class="pgs-btn" onclick="move()">progress</button> 
+    <div class="philosopher-card card" data-id=${id}>
+    <img src=${image} alt=${name}/>
     
+    <p class="title">${name}</p>
+    <p class="idea-bar"> ideas: ${this.thoughts.length}</p>
     </div>`
-   
+ 
+  }
+  renderThoughtData = () => {
+    modal.open()
+    modal.main.innerHTML = ""
+    const thoughtList = document.createElement("ul")
+    modal.main.appendChild(thoughtList)
+    this.thoughts.forEach(thought => {
+      thoughtList.innerHTML += `<li>${thought.data.idea}: ${thought.data.category}</li>`
+    })
   }
   
   static handleSubmit = (e) => {
     e.preventDefault()
-    const newPhilosopher = {
+     const newPhilosopher = {
       name: e.target.name.value,
       idea: e.target.idea.value,
       image: e.target.image.value,
-      section: e.target.section.value,
-      notes: e.target.notes.value,
-      favorite: e.target.favorite.value
+      category: e.target.category.value,
+      
     }
     api.createPhilosopher(newPhilosopher).then(philosopher => {
       new Philosopher(philosopher).renderCard()
@@ -69,17 +67,14 @@ class Philosopher {
     modal.close()
     e.target.reset()
   }
+
+ 
   
 
-  fave = (card) => {
-    api.addToFave(this.data.id, this.data.favorites = true).then(philosopher => {
-      this.data = philosopher
-      
-      card.innerHTML = this.renderIndex()
-    })
-  }
+  
 
   static openPhilosopherForm = () => {
+   
     modal.main.innerHTML = `
     <h1>Add Your Philosopher</h1>
 
@@ -88,8 +83,8 @@ class Philosopher {
       <input type="text" name="name"><br>
       <label for"idea">idea:</label><br>
       <input type="text" name="idea"><br>
-      <label for="section">section</label><br>
-      <input type="text" name="section"><br>
+      <label for="category">category</label><br>
+      <input type="text" name="category"><br>
       <label for="image">Image:</label><br>
       <input type="text" name="image"><br>
       <input type="submit" value="List this Philosopher!"><br>
@@ -97,6 +92,7 @@ class Philosopher {
     `
     modal.main.querySelector("form").addEventListener("submit", this.handleSubmit)
     modal.open()
+    
   }
   
   static openEditPhilosopherForm = () => {
@@ -108,8 +104,8 @@ class Philosopher {
       <input type="text" name="name"><br>
       <label for"idea">idea:</label><br>
       <input type="text" name="idea"><br>
-      <label for="section">section</label><br>
-      <input type="text" name="section"><br>
+      <label for="category">category</label><br>
+      <input type="text" name="category"><br>
       <label for="image">Image:</label><br>
       <input type="text" name="image"><br>
       <label for="notes">notes:</label><br>
@@ -128,6 +124,7 @@ class Philosopher {
 
   static getPhilosophers = () => {
     api.getPhilosophers().then(philosophers => {
+      Philosopher.all = []
       philosophers.forEach(philosopher => new Philosopher(philosopher))
       this.renderIndex()
     })
@@ -144,43 +141,18 @@ class Philosopher {
     main.append(addPhilosopher, philosopherContainer )
     this.all.forEach(philosopher => philosopher.renderCard())
     philosopherContainer.addEventListener("click", this.handleIndexClick)
+    
   }
 
   static handleIndexClick = (e) => {
     if (e.target.tagName == "IMG" || e.target.classList.contains("title")){
       const id = e.target.closest(".philosopher-card").dataset.id
       this.find(id).renderShow()
-    }
-  }
-
- 
- 
-
-
-static move() {
-  const i = 0
-  if (i == 0) {
-    i = 1;
-    const elem = document.getElementById("myBar");
-    const width = 1;
-    const id = setInterval(frame, 10);
-    function frame() {
-      if (width >= 100) {
-        clearInterval(id);
-        i = 0;
-      } else {
-        width++;
-        elem.style.width = width + "%";
+    } else if (e.target.classList.contains("idea-bar")){
+        const id = e.target.closest(".philosopher-card").dataset.id
+        this.find(id).renderThoughtData()
       }
     }
-  }
-}
   
-
-
-
-
-
-
-
+  
 }
