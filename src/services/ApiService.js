@@ -9,6 +9,7 @@ class ApiService {
   getPhilosophers= () => fetch(this.api + "/philosophers").then(res => res.json())
   
   createPhilosopher = (newPhilosopher) => {
+    newPhilosopher.user_id = user.id
     return fetch(this.api + "/philosophers", {
       method: 'POST', // or 'PUT'
       headers: {
@@ -19,20 +20,34 @@ class ApiService {
     .then(response => response.json())
   }
 
-   
-    
-
-    deletePhilosopher = () => {
-      
-    return   fetch(`${API}/philosophers/${philosopher.id}`, {
-      method: 'DELETE',
+  findOrCreateUser = (username) => {
+    return fetch(this.api + "/users", {
+      method: 'POST', // or 'PUT'
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({username: username}),
     })
     .then(response => response.json())
-    .then(() => div.remove())
-  }
   
 
+  }
+   
   
+    deletePhilosopherAction = (id) => {
+      
+      return fetch(`${this.api}/philosophers/${id}`,{
     
+      method: "DELETE",
+      }).then(() => {
+        console.log('removed')
+      }).catch(err => {
+        console.error(err)
+      })
+      
+     
+      
+  
+  }
 }
   

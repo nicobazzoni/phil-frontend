@@ -9,9 +9,13 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
  <link href="https://fonts.googleapis.com/css2?family=Crimson+Text&display=swap" rel="stylesheet">
+ <script src="https://cdn.jsdelivr.net/npm/p5@1.4.0/lib/p5.js"></script>
+ <script  src="sketch.js"></script>
  <script src="./src/services/ApiService.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/p5@1.4.0/lib/p5.js"></script>
  <script src="./src/components/Philosopher.js"></script>
  <script src="./src/components/Thought.js"></script>
+ <script src="./src/components/Burst.js"></script>
  <script src="./src/components/Modal.js"></script>
  <script defer src="./src/index.js"></script>
   <title>Philosopher Spotter</title>
@@ -33,7 +37,13 @@
     </div>
   </div>
  
-  <div id="main"></div>
+  <div id="main">
+    <form>
+      <label for="username">Username:</label><br>
+      <input type="text" id="username" name="username">
+      <input type="submit" value="Submit">
+    </form>
+  </div>
   
 </body>
 </html>

@@ -6,11 +6,13 @@ class Thought {
     }
   
     render = () => {
-      const {  idea, category} = this.data
+      const {idea, category} = this.data
       document.querySelector(".container").innerHTML += `
       <div class="card">
         <p>${idea}</p>
-        <p>${category}</p>
+      <p>${category}</p>
+      
+        
        
       </div>
       `
