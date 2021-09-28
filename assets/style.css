@@ -55,26 +55,9 @@ button:hover {
   clip-path: polygon(0 0, 50% 2, 90% 100%, 1 90%);
   
 }
-.fav-btn {
- 
-  
-  
-  
-  position: relative;
-  bottom: 20px;
-  right: 150px;
-  
-  background-color: #000000; /* Green */
-  border: none;
-  color: rgb(255, 0, 247);
-  padding: 5px 5px;
-  text-align: center;
-  font-family:  var(--header-font-family);
-  display: inline-block;
-  font-size: 25px;
-  border: none
 
-}
+
+
 
 body {
   
@@ -103,6 +86,7 @@ body {
   border: 3px solid var(--main-color);
   border-radius: 1em;
   max-width: 350px;
+  background-color: rgb(16, 12, 12);
 }
 
 .card img {
@@ -113,11 +97,11 @@ body {
 }
 
 .card .title {
-  font-size: 1.25em;
+  font-size: 2.25em;
   font-family: var(--header-font-family);
   color: red;
   cursor: pointer;
-  text-decoration: underline;
+  text-decoration: none;
 }
 
 .show > img {
@@ -288,102 +272,9 @@ title {
   text-decoration: none;
   cursor: pointer;
 }
-.pgs-btn {
-  position: relative;
-  bottom: 20px;
-  left: 130px;
-  background-color: #000000; /* Green */
-  border: none;
-  color: rgb(0, 221, 255);
-  padding: 5px 5px;
-  text-align: center;
-  font-family:  var(--header-font-family);
-  display: inline-block;
-  font-size: 10px;
-  border: none
-}
-
-
-#myProgress {
-  width: 100%;
-  background-color: rgb(15, 223, 255);
-}
-
-#myBar {
-  width: 20%;
-  height: 20px;
-  background-color: rgb(215, 39, 255);
-}
 
 
 
-/* notes */
 
-html {
-  background-color: #ffffff;
-  font-family: "Source Sans Pro", sans-serif;
-}
 
-.wrapper {
-  text-align: center;
-}
 
-.title {
-  display: inline-block;
-  color: #d9faff;
-}
-
-#note_form {
-  text-align: center;
-  font-size: 0px;
-}
-
-#note_input {
-  display: inline-block;
-  background-color: #26d7f2;
-  padding: 1em;
-  font-size: 24px;
-  border: none;
-}
-
-#note_input:hover {
-  background-color: #c8f8ff;
-}
-
-#note_input:focus {
-  background-color: #fff;
-}
-
-.note_submit {
-  display: inline-block;
-  padding: 1em;
-  font-size: 24px;
-  margin: 0;
-  background-color: #003cffb2;
-  color: #fff;
-  border: none;
-}
-.note_submit:hover {
-  background-color: #ff00f7d7;
-}
-.note_submit:focus {
-  background-color: #ff00d0;
-}
-#container {
-  padding: 1em;
-  width: 750px;
-  display: inline-block;
-}
-.note {
-  padding: 1em;
-  margin: 1em;
-  font-size: 24px;
-  background-color: #8cf0ff;
-  border-radius: 10px;
-}
-.task:hover {
-  background-color: rgb(218, 107, 255);
-  color: white;
-  transition: 0.5s;
-  cursor: pointer;
-}

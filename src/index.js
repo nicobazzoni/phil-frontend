@@ -10,7 +10,7 @@ function handleUsernameSubmit(e){
   document.getElementById("main").innerHTML = ""
   api.findOrCreateUser(e.target.username.value).then(userData => {
     user = userData
-     Philosopher.getPhilosophers()
+    Branch.getBranches()
    
   })
 }
