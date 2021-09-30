@@ -11,7 +11,7 @@ class Branch {
   }
 
   renderShow = () => {
-    const { name } = this.data
+    const { name, id } = this.data
     
     const addphilosopher = document.createElement("button")
     addphilosopher.innerText = "Add philosopher"
@@ -28,10 +28,10 @@ class Branch {
     <button  id="goBack">Back</button>
     <button  id="delete-button">Delete</button>
     `
-    document.getElementById("philosopher-btn").addEventListener("click", Branch.openPhilosopherForm)
+    document.getElementById("philosopher-btn").addEventListener("click", Philosopher.openPhilosopherForm)
     document.getElementById("delete-button").addEventListener("click", this.deleteBranch)
     document.getElementById("goBack").addEventListener("click", Branch.renderIndex) 
-    this.philosophers.forEach(philosopher => Philosopher.render())
+    this.philosophers.forEach(philosopher => philosopher.render())
   }
 
   
@@ -77,8 +77,6 @@ deleteBranch = (e) => {
   
 
  
-  
-  
  
   
 
@@ -94,25 +92,7 @@ deleteBranch = (e) => {
     })
   }
 
-  static openPhilosopherForm = () => {
-    modal.main.innerHTML = `
-    <h1>Add Your Philosopher</h1>
-
-    <form>
-      <label for="name">Name:</label><br>
-      <input type="text" name="name"><br>
-
-      <label for="idea">Idea:</label><br>
-      <input type="text" idea="idea"><br>
-      
-      <label for="imageUrl">Image:</label><br>
-      <input type="text" name="imageUrl"><br>
-      <input type="submit" value="Create Philosopher!"><br>
-    </form>
-    `
-    modal.main.querySelector("form").addEventListener("submit", this.handleSubmit)
-    modal.open()
-  }
+  
   
   
   static renderIndex = () => {

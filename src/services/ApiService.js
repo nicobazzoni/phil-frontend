@@ -46,24 +46,12 @@ class ApiService {
               id: i.branchId,
               name: json.data.attributes.branch_name,
             });
-            branchObj.attachDOM();
-            branchObj.addToDropDown();
+           
           }
         });
   }
 }
 
-  createBranch = (newBranch) => {
-    newBranch.user_id = user.id
-    return fetch(this.api + "/branches", {
-      method: 'POST', // or 'PUT'
-      headers: {
-        'Content-Type': 'application/json',
-      }, 
-      body: JSON.stringify(newBranch),
-    })
-    .then(response => response.json())
-  }
   
   
   findOrCreateUser = (username) => {
