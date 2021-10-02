@@ -7,7 +7,7 @@ class Philosopher{
   }
 
   render = () => {
-    const { name, image, idea } = this.data
+    const { name, image, idea, id } = this.data
     document.querySelector(".container").innerHTML += `
     <div class="card">
       <h1>${name}</h1>
@@ -27,7 +27,7 @@ class Philosopher{
       name: e.target.name.value,
       idea: e.target.idea.value,
       image: e.target.image.value,
-      branch_id: e.target.branch_id.value
+      branch_id: e.target.branchId.value
     }
     console.log(newPhilosopher)
     api.createPhilosopher(newPhilosopher).then(Philosopher => {
@@ -42,8 +42,8 @@ class Philosopher{
     <h1>Add Your Philosopher</h1>
 
     <form>
-    <label for="philosopher-dropdown">Philosopher:</label>
-    <select name="philosopherId" id="philosopher-dropdown">
+    <label for="branch-dropdown">Philosopher:</label>
+    <select name="branchId" id="branch_dropdown">
                  <option value= "1">Logic</option>
                 <option value= "2">Epistemology</option>
                 <option value= "3">Ontology</option>
@@ -65,10 +65,11 @@ class Philosopher{
     modal.open()
   }
   static getPhilosophers = () => {
+    console.log(getPhilosophers)
     api.getPhilosophers().then(philosophers => {
       Philosopher.all = []
       philosophers.forEach(philosopher => new Philosopher(philosopher))
-      this.renderIndex()
+      this.render()
     })
   }
 }

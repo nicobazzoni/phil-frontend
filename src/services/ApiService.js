@@ -6,19 +6,19 @@ class ApiService {
     this.api = api
   }
 
-  getPhilosophers= () => fetch(this.api + "/philosophers").then(res => res.json())
+  getPhilosophers= () => fetch(this.api + "/philosophers").then(res => res.json()).then(json => console.log(json))
   
   getBranches = () => fetch(this.api + "/branches").then(res => res.json())
  
   
  
-  createPhilosopher = () => {
-    const PhilosopherDetails = {
-    name: nameInput.value,
-    idea: ideaInput.value,
-    image: imageInput.value,
+  createPhilosopher = (e) => {
   
-    branch_id: this.value,
+    const PhilosopherDetails = {
+      name: e.name,
+      idea: e.idea,
+      image: e.image,
+      branch_id: e.branch_id
   };
 
   const configObj = {
@@ -41,9 +41,9 @@ class ApiService {
           const i = new Philosopher({ id: json.data.id, ...json.data.attributes });
           i.attachDOM();
           
-          if (!Branch.all.find((c) => c.id == i.branchId)) {
+          if (!Branch.all.find((c) => c.id == i.branch_id)) {
             let branchObj = new Branch({
-              id: i.branchId,
+              id: i.branch_id,
               name: json.data.attributes.branch_name,
             });
            
