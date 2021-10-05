@@ -6,20 +6,14 @@ class ApiService {
     this.api = api
   }
 
-  getPhilosophers= () => fetch(this.api + "/philosophers").then(res => res.json()).then(json => console.log(json))
+  getPhilosophers = () => fetch(this.api + "/philosophers").then(res => res.json())
   
   getBranches = () => fetch(this.api + "/branches").then(res => res.json())
  
   
  
-  createPhilosopher = (e) => {
-  
-    const PhilosopherDetails = {
-      name: e.name,
-      idea: e.idea,
-      image: e.image,
-      branch_id: e.branch_id
-  };
+  createPhilosopher = (newPhilosopher) => {
+
 
   const configObj = {
     method: "POST",
@@ -28,18 +22,16 @@ class ApiService {
       Accept: "application/json",
     },
     
-    body: JSON.stringify(PhilosopherDetails),
+    body: JSON.stringify(newPhilosopher),
   }; {
     
-     fetch(this.api + "/philosophers", configObj)
-     
-     .then((res) => res.json())
-    fetch(this.api, configObj)
-       
-       
+    fetch(this.api + "/philosophers", configObj)
+   
+      .then((res) => res.json())
         .then((json) => {
-          const i = new Philosopher({ id: json.data.id, ...json.data.attributes });
-          i.attachDOM();
+          
+          const i = new Philosopher(configObj);
+          ;
           
           if (!Branch.all.find((c) => c.id == i.branch_id)) {
             let branchObj = new Branch({

@@ -11,7 +11,7 @@ class Branch {
   }
 
   renderShow = () => {
-    const { name, id } = this.data
+    const { name, id, username } = this.data
     
     const addphilosopher = document.createElement("button")
     addphilosopher.innerText = "Add philosopher"
@@ -20,23 +20,24 @@ class Branch {
     document.getElementById("main").innerHTML = `
     <div class="show">
     <p> Branch: ${name} </p>
-   
+    <p> Done by: ${username} </p>
+    
    
     <div class="container"></div>
     </div>
     <button  id="philosopher-btn">Add philosopher</button>
     <button  id="goBack">Back</button>
-    <button  id="delete-button">Delete</button>
+    
     `
     document.getElementById("philosopher-btn").addEventListener("click", Philosopher.openPhilosopherForm)
-    document.getElementById("delete-button").addEventListener("click", this.deleteBranch)
+
     document.getElementById("goBack").addEventListener("click", Branch.renderIndex) 
     this.philosophers.forEach(philosopher => philosopher.render())
   }
 
   
   renderCard = () => {
-    const {  name, id } = this.data
+    const {  name, id,  } = this.data
     document.getElementById("branch-container").innerHTML += `
     
     <div class="branch-card card" data-id=${id}>
@@ -44,24 +45,17 @@ class Branch {
   
    
     <p class="title">${name}</p>
+   
     <p class="idea-bar"> ideas: ${this.philosophers.length}</p>
     
     </div>`
     
-  
+   
 }
 
 
 
-deleteBranch = (e) => {
-  
- const id = this.data.id
- console.log(id)
- console.log("this", api)
- api.deleteBranchAction(id)
- 
- 
-}
+
 
 
   

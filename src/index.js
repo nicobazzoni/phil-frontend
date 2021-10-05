@@ -1,8 +1,7 @@
 const api = new ApiService("http://localhost:3000")
 const modal = new Modal()
-const philosopherNameInput = document.getElementById("philosopher-name")
-const dropdown = document.getElementById('philosopher-dropdown')
-let user
+
+let user 
 
 document.querySelector("form").addEventListener("submit", handleUsernameSubmit)
 
@@ -12,7 +11,7 @@ function handleUsernameSubmit(e){
   api.findOrCreateUser(e.target.username.value).then(userData => {
     user = userData
     Branch.getBranches(),
-    Philosopher.getPhilosophers()
+    Philosopher.getPhilos()
    
   })
 }
