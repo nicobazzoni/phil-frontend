@@ -30,17 +30,9 @@ class ApiService {
       .then((res) => res.json())
         .then((json) => {
           
-          const i = new Philosopher(configObj);
-          ;
-          
-          if (!Branch.all.find((c) => c.id == i.branch_id)) {
-            let branchObj = new Branch({
-              id: i.branch_id,
-              name: json.data.attributes.branch_name,
-            });
-           
-          }
+        
         });
+        Philosopher.getPhilos()
   }
 }
 

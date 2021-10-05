@@ -19,14 +19,14 @@ class Branch {
     
     document.getElementById("main").innerHTML = `
     <div class="show">
+    <button  id="philosopher-btn">Add philosopher</button>
+    <button  id="goBack">Back</button>
     <h1> Branch: ${name} </h1>
     
     
    
     <div class="container"></div>
     </div>
-    <button  id="philosopher-btn">Add philosopher</button>
-    <button  id="goBack">Back</button>
     
     `
     document.getElementById("philosopher-btn").addEventListener("click", Philosopher.openPhilosopherForm)
