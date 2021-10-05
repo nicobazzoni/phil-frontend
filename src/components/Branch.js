@@ -11,7 +11,7 @@ class Branch {
   }
 
   renderShow = () => {
-    const { name, id, username } = this.data
+    const { name, id } = this.data
     
     const addphilosopher = document.createElement("button")
     addphilosopher.innerText = "Add philosopher"
@@ -19,8 +19,8 @@ class Branch {
     
     document.getElementById("main").innerHTML = `
     <div class="show">
-    <p> Branch: ${name} </p>
-    <p> Done by: ${username} </p>
+    <h1> Branch: ${name} </h1>
+    
     
    
     <div class="container"></div>

@@ -76,14 +76,15 @@ class Philosopher{
     render = () => {
     const { name, image, idea,id,  username } = this.data
     document.querySelector(".container").innerHTML += `
-    <div class="card" data-id=${id}>
+    <div class="philosopher-card" data-id=${id}>
       <h1>${name}</h1>
       <img src=${image} 
       <h1>${idea}</h1>
-      <p>${username}</p>
+      <p> Written by:${username}</p>
       <button onclick= "deletePhilosopher(${this.id})">Delete</button>
     </div>
     `
+    
   }
   static deletePhilosopher = (id) => {
     let philsopherContainer = document.getElementById("container")

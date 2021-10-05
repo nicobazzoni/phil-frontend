@@ -1,7 +1,7 @@
 :root {
   --bg-color: rgb(16, 12, 12);
   --main-color: #9b9595;
-  --main-color-transparent: rgba(255, 166, 0, 0.459);
+  --main-color-transparent: rgb(255, 255, 255);
   --header-font-family: 'Crimson', ;
   --bord-color:  #0b0107;
 }
@@ -99,7 +99,7 @@ body {
 .card .title {
   font-size: 2.25em;
   font-family: var(--header-font-family);
-  color: red;
+  color: rgb(155, 150, 150);
   cursor: pointer;
   text-decoration: none;
 }
@@ -132,6 +132,18 @@ body {
   border-radius: 0.5em;
   
 }
+
+.branch-card {
+  border: 10px solid var( --bord-color);
+  border-radius: 0.5em;
+  
+}
+.branch-card:hover {
+  border: 10px solid var( --bord-color);
+  border-radius: 0.5em;
+  
+}
+
 
 .philosopher-card img {
   width: 350px;
