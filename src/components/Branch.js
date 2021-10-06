@@ -101,7 +101,7 @@ class Branch {
    
      
     main.append(branchContainer)
-  
+   
     this.all.forEach(branch => branch.renderCard())
     
     branchContainer.addEventListener("click", this.handleIndexClick)
@@ -115,7 +115,7 @@ class Branch {
       this.find(id).renderShow()
     } else if (e.target.classList.contains("idea-bar")){
         const id = e.target.closest(".branch-card").dataset.id
-        this.find(id).renderPhilosopherInfo()
+        this.find(id).render()
 
     
       } 

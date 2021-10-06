@@ -23,17 +23,19 @@ class ApiService {
     },
     
     body: JSON.stringify(newPhilosopher),
-  }; {
+  }; 
     
-    fetch(this.api + "/philosophers", configObj)
+    return fetch(this.api + "/philosophers", configObj)
    
-      .then((res) => res.json())
-        .then((json) => {
+      .then(res => res.json())
+      .then(data => console.log(data))
+        // .then(json => {
+        //   let philo = new Philosopher(json.data)
           
+        // philo.render()
+        // });
         
-        });
-        Philosopher.getPhilos()
-  }
+  
 }
 
   

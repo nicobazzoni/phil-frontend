@@ -10,8 +10,9 @@ class Philosopher{
   
   static handleSubmit = (e) => {
     e.preventDefault()
+    modal.close()
     
-    let branch_id = this.id
+    
    
     const newPhilosopher = {
       
@@ -24,13 +25,19 @@ class Philosopher{
     }
     newPhilosopher.user_id = user.id
     console.log(newPhilosopher)
-    api.createPhilosopher(newPhilosopher).then(philosopher => {
+    
+    api.createPhilosopher(newPhilosopher)
+    .then(data => console.log(data))
+    .then(philosopher => {
+      let newPh = new Philosopher(philosopher)
+      newPh.render()
       
-      new Philosopher(philosopher).render()
     })
-    modal.close()
     e.target.reset()
+    
+    // renderIndex()
   }
+
   static openPhilosopherForm = () => {
     
     modal.main.innerHTML = `
@@ -74,9 +81,10 @@ class Philosopher{
         
       
     render = () => {
-    const { name, image, idea,id,  username } = this.data
+      
+     const { name, image, idea, id, username } = this.data
     document.querySelector(".container").innerHTML += `
-    <div class="philosopher-card" data-id=${id}>
+    <div class="philosopher-card" data-id=${this.id}>
       <h1>${name}</h1>
       <img src=${image} 
       <h1>${idea}</h1>
